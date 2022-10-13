@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Guessing Game by mustaquenadim</title>
+  <link href="/dist/output.css" rel="stylesheet">
+</head>
+<body>
+  <!-- header -->
+  <header></header>
+  <!-- end header -->
+
+  <!-- main -->
+  <main class="container mx-auto px-4">
+    <h1 class="text-2xl">The Guessing Game</h1>
+
+    <!-- guess number input -->
+    <section>
+      <label class="w-96 relative block">
+        <span class="sr-only">Guess</span>
+        <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-full py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Enter your guessed number here!" type="text" name="search"/>
+        <span class="absolute inset-y-0 right-0 flex items-center pr-1">
+          <button class="bg-red-400 rounded-full px-4 py-1 text-white">Guess</button>
+        </span>
+      </label>
+      
+      <div class="italic text-sm text-slate-500">You've 10 guesses remaining!</div>
+    </section>
+
+    <section>
+      <div>
+        <div class="bg-red-300 inline-block px-2 rounded-full text-sm">Attempt 1</div>
+        <div class="flex items-center text-md">
+          <span class="bg-red-200 text-red-400 rounded-full px-2 mr-1">40</span> Your guess is too high.
+        </div>
+      </div>
+    </section>
+    
+    <section class="fixed bottom-0 right-0">
+      <div class="text-2xl italic">Hey, I'm thinking of a number between 1 to 100. Can you figure out what the number is? Remember, you've only 10 guesses!</div>
+    </section>
+  </main>
+  <!-- end main -->
+
+  <!-- footer -->
+  <footer></footer>
+  <!-- end footer -->
+</body>
+</html>
