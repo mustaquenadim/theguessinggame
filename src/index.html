@@ -14,13 +14,13 @@
 
   <!-- main -->
   <main class="container mx-auto px-4">
-    <h1 class="text-2xl">The Guessing Game</h1>
+    <h1 class="text-5xl text-center mt-10">The Guessing Game</h1>
 
     <!-- guess number input -->
-    <section>
+    <section class="flex flex-col items-center justify-center mt-10">
       <label class="w-96 relative block">
         <span class="sr-only">Guess</span>
-        <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-full py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Enter your guessed number here!" type="text" name="search"/>
+        <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-red-300 rounded-full py-2 pl-3 pr-24 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-red-500 focus:ring-1 sm:text-sm" placeholder="Enter your guessed number here!" type="number" name="search"/>
         <span class="absolute inset-y-0 right-0 flex items-center pr-1">
           <button class="bg-red-400 rounded-full px-4 py-1 text-white">Guess</button>
         </span>
@@ -29,23 +29,37 @@
       <div class="italic text-sm text-slate-500">You've 10 guesses remaining!</div>
     </section>
 
-    <section>
+    <!-- guesses -->
+    <section class="mt-8 text-center space-y-2.5">
       <div>
         <div class="bg-red-300 inline-block px-2 rounded-full text-sm">Attempt 1</div>
-        <div class="flex items-center text-md">
+        <div class="flex items-center justify-center text-md">
+          <span class="bg-red-200 text-red-400 rounded-full px-2 mr-1">40</span> Your guess is too high.
+        </div>
+      </div>
+      <div>
+        <div class="bg-red-300 inline-block px-2 rounded-full text-sm">Attempt 2</div>
+        <div class="flex items-center justify-center text-md">
           <span class="bg-red-200 text-red-400 rounded-full px-2 mr-1">40</span> Your guess is too high.
         </div>
       </div>
     </section>
+    <!-- end guesses -->
     
+    <!-- textbox -->
     <section class="fixed bottom-0 right-0">
-      <div class="text-2xl italic">Hey, I'm thinking of a number between 1 to 100. Can you figure out what the number is? Remember, you've only 10 guesses!</div>
+      <img src="./assets/textbox.png" alt="Textbox Illustration" class="relative">
+        <div class="w-96 text-center text-2xl italic absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">Hey, I'm thinking of a number between 1 to 100. Can you figure out what the number is? Remember, you've only 10 guesses!</div>
+      </img>
     </section>
+    <!-- end textbox -->
   </main>
   <!-- end main -->
 
   <!-- footer -->
   <footer></footer>
   <!-- end footer -->
+
+  <script src="app.js"></script>
 </body>
 </html>
