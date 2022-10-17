@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <title>The Guessing Game by mustaquenadim</title>
   <link href="/dist/output.css" rel="stylesheet">
 </head>
+
 <body>
   <!-- header -->
   <header></header>
@@ -20,21 +22,24 @@
     <section class="flex flex-col items-center justify-center mt-10">
       <label class="w-96 relative block">
         <span class="sr-only">Guess</span>
-        <input id="input-number" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-red-300 rounded-full py-2 pl-3 pr-24 shadow-sm focus:outline-none focus:border-red-500 focus:ring-red-500 focus:ring-1 sm:text-sm" placeholder="Enter your guessed number here!" type="number" name="guess" onchange="myFunc(this.value)" />
+        <input id="numberInput"
+          class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-red-300 rounded-full py-2 pl-3 pr-24 shadow-sm focus:outline-none focus:border-red-500 focus:ring-red-500 focus:ring-1 sm:text-sm"
+          placeholder="Enter your guessed number here!" type="number" name="guess" onchange="myFunc(this.value)" />
         <span class="absolute inset-y-0 right-0 flex items-center pr-1">
-          <button type="button" id="btn-guess" class="bg-red-300 hover:bg-red-500 rounded-full px-4 py-1 text-white" onclick="myBtn()">Guess</button>
+          <button type="button" id="guessBtn" class="bg-red-300 hover:bg-red-500 rounded-full px-4 py-1 text-white"
+            onclick="myBtn()">Guess</button>
         </span>
       </label>
-      
-      <div class="italic text-sm text-slate-500">You've 10 guesses remaining!</div>
+
+      <div class="italic text-sm text-slate-500">You've <span id="guessRemaining">10</span> guesses remaining!</div>
     </section>
 
     <!-- guesses -->
-    <section class="mt-8 text-center space-y-2.5">
-      <div>
+    <section id="guesses" class="mt-8 text-center space-y-2.5">
+      <!-- <div>
         <div class="bg-red-300 inline-block px-2 rounded-full text-sm">Attempt 1</div>
         <div class="flex items-center justify-center text-md">
-          <span class="bg-red-200 text-red-400 rounded-full px-2 mr-1">40</span> Your guess is too high.
+          <span id="guessedNumber" class="bg-red-200 text-red-400 rounded-full px-2 mr-1">40</span> Your guess is too high.
         </div>
       </div>
       <div>
@@ -42,14 +47,17 @@
         <div class="flex items-center justify-center text-md">
           <span class="bg-red-200 text-red-400 rounded-full px-2 mr-1">40</span> Your guess is too high.
         </div>
-      </div>
+      </div> -->
     </section>
     <!-- end guesses -->
-    
+
     <!-- textbox -->
     <section class="fixed bottom-0 right-0">
       <img src="./assets/textbox.png" alt="Textbox Illustration" class="relative">
-        <div class="w-96 text-center text-2xl italic absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">Hey, I'm thinking of a number between 1 to 100. Can you figure out what the number is? Remember, you've only 10 guesses!</div>
+      <div
+        class="w-96 text-center text-2xl italic absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        Hey, I'm thinking of a number between 1 to 100. Can you figure out what the number is? Remember, you've only 10
+        guesses!</div>
       </img>
     </section>
     <!-- end textbox -->
@@ -60,6 +68,15 @@
   <footer></footer>
   <!-- end footer -->
 
+  <!--Overlay Effect-->
+  <div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-screen w-full" id="modal">
+    <!--modal content-->
+    
+    <!-- end modal content -->
+  </div>
+  <!-- end overlay effect -->
+
   <script src="app.js"></script>
 </body>
+
 </html>
