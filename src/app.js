@@ -1,15 +1,12 @@
-const numberInput = document.getElementById('numberInput');
-const guessBtn = document.getElementById('guessBtn');
-const guessRemaining = document.getElementById('guessRemaining');
 const guessedNumber = document.getElementById('guessedNumber');
+const guessRemaining = document.getElementById('guessRemaining');
 const guesses = document.getElementById('guesses');
+const modal = document.getElementById('modal');
 
 let remainingGuesses = 10;
 let numberOfGuesses = 1;
-console.log('remaining guess______', remainingGuesses);
 
 const randomNumber = generateRandomNumber();
-console.log('random number______', randomNumber);
 
 function guessNumber(number) {
   if (remainingGuesses > 1) {
@@ -17,46 +14,34 @@ function guessNumber(number) {
     guessRemaining.innerText = remainingGuesses;
 
     if (number > randomNumber) {
-      // console.log("Your guess is too high!");
       createGuesses(numberOfGuesses, number, 'Your guess is too high!');
     } else if (number < randomNumber) {
-      // console.log("Your guess is too low!");
       createGuesses(numberOfGuesses, number, 'Your guess is too low!');
     } else {
-      // console.log("Your guess is right!");
       createGuesses(numberOfGuesses, number, 'Your guess is right!');
-      success("lose");
+      popup("win");
     }
-    numberInput.value = '';
-    // guessBtn.disabled = true;
+    guessedNumber.value = '';
   } else {
     remainingGuesses--;
     guessRemaining.innerText = remainingGuesses;
-    console.log("Sorry! You've no guess remaining!");
-    success("lose");
+    guessedNumber.value = '';
+    popup("lose");
   }
 }
 
-function myFunc(value) {
-  if (value) {
-    console.log('first', value);
-    guessNumber(value);
+function catchGuessedNumber(number) {
+  if (number) {
+    guessNumber(number);
   }
 }
 
-/**
- * "Guess" Button onClick function
- */
-function myBtn() {
-  myFunc();
+function catchGuessedNumberHandler() {
+  catchGuessedNumber();
 }
 
-/**
- * create guesses element
- */
 function createGuesses(guessNumber, number, message) {
   const guess = document.createElement('div');
-  // guess.classList.add("guesses");
   guess.innerHTML = `
       <div>
         <div class="bg-red-300 inline-block px-2 rounded-full text-sm">Attempt ${guessNumber}</div>
@@ -69,40 +54,26 @@ function createGuesses(guessNumber, number, message) {
   numberOfGuesses++;
 }
 
-/**
- * generate random number
- */
 function generateRandomNumber() {
   const randomNumber = Math.floor(Math.random() * 100) + 1;
   return randomNumber;
 }
 
-// Grabs all the Elements by their IDs which we had given them
-const modal = document.getElementById('modal');
-const playAgainBtn = document.getElementById('playAgainBtn');
-
-function success(result) {
+function popup(result) {
   modal.style.display = 'block';
   message(result);
 }
-// We want the modal to close when the OK button is clicked
-playAgainBtn.onclick = function () {
+
+function reset() {
   modal.style.display = "none";
   location.reload();
 }
 
-// window.onclick = function (event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-
 function message(result) {
-  console.log("result_____", result)
-  const mod = document.createElement('div');
-  mod.classList.add('modal-content');
-  mod.innerHTML = `
-    <div id="modal" class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+  const modalContent = document.createElement('div');
+  modalContent.classList.add('h-screen', 'flex', 'items-center', 'justify-center');
+  modalContent.innerHTML = `
+    <div id="modal" class="relative mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
       <div class="mt-3 text-center">
         <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full ${result === 'win' && "bg-green-100"} ${result === 'lose' && "bg-red-100"}">
           ${result === 'win' ? (
@@ -119,12 +90,12 @@ function message(result) {
         </div>
         <div class="items-center px-4 mt-4">
           <button id="playAgainBtn"
-            class="px-4 py-2 text-white text-base font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 ${result === 'win' ? "bg-green-500 hover:bg-green-600 focus:ring-green-300" : 'bg-red-500 hover:bg-red-600 focus:ring-red-300'}">
+            class="px-4 py-2 text-white text-base font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 ${result === 'win' ? "bg-green-500 hover:bg-green-600 focus:ring-green-300" : 'bg-red-500 hover:bg-red-600 focus:ring-red-300'}" onclick="reset()">
             ${result === 'win' ? 'Play Again' : 'Try Again'}
           </button>
         </div>
       </div>
     </div>
   `;
-  modal.appendChild(mod);
+  modal.appendChild(modalContent);
 }

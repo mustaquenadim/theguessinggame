@@ -22,12 +22,12 @@
     <section class="flex flex-col items-center justify-center mt-10">
       <label class="w-96 relative block">
         <span class="sr-only">Guess</span>
-        <input id="numberInput"
+        <input id="guessedNumber"
           class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-red-300 rounded-full py-2 pl-3 pr-24 shadow-sm focus:outline-none focus:border-red-500 focus:ring-red-500 focus:ring-1 sm:text-sm"
-          placeholder="Enter your guessed number here!" type="number" name="guess" onchange="myFunc(this.value)" />
+          placeholder="Enter your guessed number here!" type="number" name="guess" onchange="catchGuessedNumber(this.value)" />
         <span class="absolute inset-y-0 right-0 flex items-center pr-1">
-          <button type="button" id="guessBtn" class="bg-red-300 hover:bg-red-500 rounded-full px-4 py-1 text-white"
-            onclick="myBtn()">Guess</button>
+          <button type="button" class="bg-red-300 hover:bg-red-500 rounded-full px-4 py-1 text-white"
+            onclick="catchGuessedNumberHandler()">Guess</button>
         </span>
       </label>
 
@@ -36,18 +36,6 @@
 
     <!-- guesses -->
     <section id="guesses" class="mt-8 text-center space-y-2.5">
-      <!-- <div>
-        <div class="bg-red-300 inline-block px-2 rounded-full text-sm">Attempt 1</div>
-        <div class="flex items-center justify-center text-md">
-          <span id="guessedNumber" class="bg-red-200 text-red-400 rounded-full px-2 mr-1">40</span> Your guess is too high.
-        </div>
-      </div>
-      <div>
-        <div class="bg-red-300 inline-block px-2 rounded-full text-sm">Attempt 2</div>
-        <div class="flex items-center justify-center text-md">
-          <span class="bg-red-200 text-red-400 rounded-full px-2 mr-1">40</span> Your guess is too high.
-        </div>
-      </div> -->
     </section>
     <!-- end guesses -->
 
@@ -69,10 +57,7 @@
   <!-- end footer -->
 
   <!--Overlay Effect-->
-  <div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-screen w-full" id="modal">
-    <!--modal content-->
-    
-    <!-- end modal content -->
+  <div id="modal" class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-screen w-full">
   </div>
   <!-- end overlay effect -->
 
