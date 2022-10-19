@@ -7,6 +7,7 @@ let remainingGuesses = 10;
 let numberOfGuesses = 1;
 
 const randomNumber = generateRandomNumber();
+console.log(randomNumber);
 
 function guessNumber(number) {
   if (remainingGuesses > 1) {
@@ -14,9 +15,18 @@ function guessNumber(number) {
     guessRemaining.innerText = remainingGuesses;
 
     if (number > randomNumber) {
-      createGuesses(numberOfGuesses, number, 'Your guess is too high!');
+      console.log(randomNumber - number)
+      if ((randomNumber - number) >= -5) {
+        createGuesses(numberOfGuesses, number, 'Your guess is high!');
+      } else {
+        createGuesses(numberOfGuesses, number, 'Your guess is too high!');
+      }
     } else if (number < randomNumber) {
-      createGuesses(numberOfGuesses, number, 'Your guess is too low!');
+      if ((randomNumber - number) <= 5) {
+        createGuesses(numberOfGuesses, number, 'Your guess is low!');
+      } else {
+        createGuesses(numberOfGuesses, number, 'Your guess is too low!');
+      }
     } else {
       createGuesses(numberOfGuesses, number, 'Your guess is right!');
       popup("win");
