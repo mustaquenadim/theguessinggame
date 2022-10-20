@@ -7,15 +7,13 @@ let remainingGuesses = 10;
 let numberOfGuesses = 1;
 
 const randomNumber = generateRandomNumber();
-console.log(randomNumber);
 
 function guessNumber(number) {
-  if (remainingGuesses > 1) {
+  if (remainingGuesses > 0) {
     remainingGuesses--;
     guessRemaining.innerText = remainingGuesses;
 
     if (number > randomNumber) {
-      console.log(randomNumber - number)
       if ((randomNumber - number) >= -5) {
         createGuesses(numberOfGuesses, number, 'Your guess is high!');
       } else {
@@ -29,14 +27,14 @@ function guessNumber(number) {
       }
     } else {
       createGuesses(numberOfGuesses, number, 'Your guess is right!');
+      guessedNumber.blur();
       popup("win");
     }
     guessedNumber.value = '';
-  } else {
-    remainingGuesses--;
-    guessRemaining.innerText = remainingGuesses;
-    guessedNumber.value = '';
-    popup("lose");
+  }
+  if ((remainingGuesses == 0) && (randomNumber != number)) {
+    guessedNumber.blur();
+    popup("lose", randomNumber);
   }
 }
 
@@ -69,9 +67,9 @@ function generateRandomNumber() {
   return randomNumber;
 }
 
-function popup(result) {
+function popup(result, actualNumber) {
   modal.style.display = 'block';
-  message(result);
+  message(result, actualNumber);
 }
 
 function reset() {
@@ -79,7 +77,7 @@ function reset() {
   location.reload();
 }
 
-function message(result) {
+function message(result, actualNumber) {
   const modalContent = document.createElement('div');
   modalContent.classList.add('h-screen', 'flex', 'items-center', 'justify-center');
   modalContent.innerHTML = `
@@ -95,7 +93,7 @@ function message(result) {
         <h3 class="mt-3 text-lg leading-6 font-medium text-gray-900 uppercase">${result === 'win' ? "Congratulations" : "Sorry"}</h3>
         <div class="mt-2 px-7">
           <p class="text-sm text-gray-500">
-            ${result === 'win' ? "Your guess is correct" : "You've lost the game"}
+            ${result === 'win' ? "Your guess is correct" : `Oops! You've lost the game. Actually the number is ${actualNumber}.`}
           </p>
         </div>
         <div class="items-center px-4 mt-4">
